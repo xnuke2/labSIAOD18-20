@@ -75,6 +75,34 @@ namespace labSIAOD18_20
                 numOfIter++;
             }
         }
+
+        void Add(int[] array, int num)
+        {
+            int i = 0;
+            while (i < array.Length&& array[i] != 0)
+            {
+                i++;
+            }
+            if (i >= array.Length) return;
+            array[i] = num;
+            Up(array, i);
+        }
+
+        void Up(int[] array, int indexOfElement) 
+        {
+            int i = (indexOfElement-1)/2;
+            int lastIndex = indexOfElement;
+            int tmp = array[indexOfElement];
+
+            while (lastIndex!=i&& tmp > array[i])
+            {
+                array[lastIndex]= array[i];
+                lastIndex = i;
+                i=(i-1)/2;
+            }
+            array[lastIndex] = tmp;
+        }
+
         void Clear_Tab()
         {
             for (int i = 0; i < dataGridViewArray.Rows[0].Cells.Count; i++)
@@ -101,7 +129,11 @@ namespace labSIAOD18_20
             Random rnd = new Random();
             for (int i = 0; i < arr.Length; i++)
             {
-                arr[i] = rnd.Next(10, 99);
+                Add(arr, rnd.Next(10, 99));
+            }
+            
+            for (int i = 0; i < arr.Length; i++)
+            {
                 dataGridViewArray.Rows[0].Cells[i].Value = arr[i];
             }
             Print(arr);
