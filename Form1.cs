@@ -76,31 +76,23 @@ namespace labSIAOD18_20
             }
         }
 
-        void Add(int[] array, int num)
+        void Add(int[] array,int index, int num)
         {
-            int i = 0;
-            while (i < array.Length&& array[i] != 0)
-            {
-                i++;
-            }
-            if (i >= array.Length) return;
-            array[i] = num;
-            Up(array, i);
+            array[index] = num;
+            Up(array, index);
         }
 
         void Up(int[] array, int indexOfElement) 
         {
-            int i = (indexOfElement-1)/2;
-            int lastIndex = indexOfElement;
-            int tmp = array[indexOfElement];
+            int i = indexOfElement;
 
-            while (lastIndex!=i&& tmp > array[i])
+            while (array[i] > array[(i-1)/2])
             {
-                array[lastIndex]= array[i];
-                lastIndex = i;
+                int tmp = array[(i - 1) / 2];
+                array[(i - 1) / 2] = array[i];
+                array[i] = tmp;
                 i=(i-1)/2;
             }
-            array[lastIndex] = tmp;
         }
 
         void Clear_Tab()
@@ -126,10 +118,14 @@ namespace labSIAOD18_20
         {
             Clear_Tab();
             int[] arr = new int[15];
+            for(int i =0 ; i < arr.Length; i++)
+            {
+                arr[i] = 0;
+            }
             Random rnd = new Random();
             for (int i = 0; i < arr.Length; i++)
             {
-                Add(arr, rnd.Next(10, 99));
+                Add(arr,i, rnd.Next(10, 99));
             }
             
             for (int i = 0; i < arr.Length; i++)
