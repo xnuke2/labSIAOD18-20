@@ -12,89 +12,120 @@ namespace labSIAOD18_20
 
         }
 
-        private void buttoòExtractMax_Click(object sender, EventArgs e)
-        {
-
-        }
+        private const int length = 15;
+        int[] arr = new int[length];
+        int size = 0;
+        int[] arrRezult = new int[length];
+        int sizeRezult = 0;
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            labelError.Visible = false;
             dataGridViewArray.RowCount = 1;
-            dataGridViewArray.ColumnCount = 15;
+            dataGridViewArray.ColumnCount = length;
             for (int i = 0; i < dataGridViewArray.ColumnCount; i++)
             {
                 dataGridViewArray.Columns[i].Width = Convert.ToInt32(dataGridViewArray.Width / dataGridViewArray.ColumnCount - 0.2);
 
             }
             dataGridViewTree.RowCount = 4;
-            dataGridViewTree.ColumnCount = 15;
+            dataGridViewTree.ColumnCount = length;
             for (int i = 0; i < dataGridViewTree.ColumnCount; i++)
             {
                 dataGridViewTree.Columns[i].Width = Convert.ToInt32(dataGridViewTree.Width / dataGridViewTree.ColumnCount - 0.2);
             }
             dataGridViewRezult.RowCount = 1;
-            dataGridViewRezult.ColumnCount = 15;
+            dataGridViewRezult.ColumnCount = length;
             for (int i = 0; i < dataGridViewRezult.ColumnCount; i++)
             {
                 dataGridViewRezult.Columns[i].Width = Convert.ToInt32(dataGridViewRezult.Width / dataGridViewRezult.ColumnCount - 0.2);
             }
         }
-        void Print(int[] array)
+        void Print()
+        {
+            printTree();
+            for (int i1 = 0; i1 < arr.Length; i1++)
+            {
+                dataGridViewArray.Rows[0].Cells[i1].Value = arr[i1];
+            }
+            for (int i1 = 0; i1 < arrRezult.Length; i1++)
+            {
+                if (arrRezult[i1] != 0)
+                {
+                    dataGridViewRezult.Rows[0].Cells[i1].Value = arrRezult[i1];
+                }
+                else break;
+                
+
+            }
+        }
+        void printTree()
         {
             int i = 0;
-            int j = 3;
-            int j1 = 1;
             int j2 = 0;
             int numOfIter = 0;
-            while (i < array.Length)
+            int tmp;
+            while (i < arr.Length)
             {
-                while (array[i] == 0)
+                while (arr[i] == 0)
                 {
                     i++;
-                    if (i >= array.Length) { return; }
+                    if (i >= arr.Length) { return; }
                 }
-                switch (numOfIter)
+                switch (i)
                 {
                     case 0:
-                        dataGridViewTree.Rows[0].Cells[7].Value = array[i];
+                        dataGridViewTree.Rows[0].Cells[7].Value = arr[i];
                         break;
                     case <= 2:
-                        dataGridViewTree.Rows[1].Cells[j].Value = array[i];
-                        j += 8;
+                        tmp = 3 + (i - 1) * 8;
+                        dataGridViewTree.Rows[1].Cells[tmp].Value = arr[i];
                         break;
                     case <= 6:
-                        dataGridViewTree.Rows[2].Cells[j1].Value = array[i];
-                        j1 += 4;
+                        tmp = 1 + (i - 3) * 4;
+                        dataGridViewTree.Rows[2].Cells[tmp].Value = arr[i];
                         break;
                     case <= 14:
-                        dataGridViewTree.Rows[3].Cells[j2].Value = array[i];
-                        j2 += 2;
+                        tmp = (i - 7) * 2;
+                        dataGridViewTree.Rows[3].Cells[tmp].Value = arr[i];
                         break;
                 }
                 i++;
                 numOfIter++;
             }
         }
-
-        void Add(int[] array,int index, int num)
+        void Add(int[] array, int index, int num)
         {
             array[index] = num;
             Up(array, index);
+            size++;
         }
 
-        void Up(int[] array, int indexOfElement) 
+        void Up(int[] array, int indexOfElement)
         {
             int i = indexOfElement;
 
-            while (array[i] > array[(i-1)/2])
+            while (array[i] > array[(i - 1) / 2])
             {
                 int tmp = array[(i - 1) / 2];
                 array[(i - 1) / 2] = array[i];
                 array[i] = tmp;
-                i=(i-1)/2;
+                i = (i - 1) / 2;
             }
         }
-
+        void ClearArrays()
+        {
+            for (int i = 0; i < size; i++)
+            {
+                arr[i] = 0;
+            }
+            size = 0;
+            for (int i = 0; i < sizeRezult; i++)
+            {
+                arrRezult[i] = 0;
+            }
+            sizeRezult = 0;
+        }
         void Clear_Tab()
         {
             for (int i = 0; i < dataGridViewArray.Rows[0].Cells.Count; i++)
@@ -116,28 +147,111 @@ namespace labSIAOD18_20
 
         private void buttonCreateQueue_Click(object sender, EventArgs e)
         {
+            labelError.Visible = false;
             Clear_Tab();
-            int[] arr = new int[15];
-            for(int i =0 ; i < arr.Length; i++)
-            {
-                arr[i] = 0;
-            }
+            ClearArrays();
             Random rnd = new Random();
             for (int i = 0; i < arr.Length; i++)
             {
-                Add(arr,i, rnd.Next(10, 99));
+                Add(arr, i, rnd.Next(10, 99));
             }
-            
-            for (int i = 0; i < arr.Length; i++)
-            {
-                dataGridViewArray.Rows[0].Cells[i].Value = arr[i];
-            }
-            Print(arr);
+            Print();
         }
 
         private void buttonClearQueue_Click(object sender, EventArgs e)
         {
+            labelError.Visible = false;
+            ClearArrays();
             Clear_Tab();
+        }
+        private void buttoòExtractMax_Click(object sender, EventArgs e)
+        {
+            labelError.Visible = false;
+            if (size == 0) 
+            { 
+                labelError.Visible = true;
+                labelError.Text = "Ìàññèâ ïóñò";
+            }
+            if (sizeRezult == length)
+            {
+                labelError.Visible = true;
+                labelError.Text = "Ìàññèâ-ðåçóëüòàò ïîëîí";
+            }
+            
+            arrRezult[sizeRezult] = arr[0];
+            sizeRezult++;
+            Delete(0);
+            Clear_Tab() ;
+            Print();
+        }
+        int Delete(int i)
+        {
+            arr[i] = 0;
+
+            while (i * 2 + 2 < arr.Length)
+            {
+
+                if (arr[i * 2 + 1] > arr[i * 2 + 2])
+                {
+                    arr[i] = arr[i * 2 + 1];
+                    i = i * 2 + 1;
+                }
+                else
+                {
+                    arr[i] = arr[i * 2 + 2];
+                    i = i * 2 + 2;
+                }
+                arr[i] = 0;
+
+            }
+
+            size--;
+            return i;
+        }
+        private void buttonChangePriority_Click(object sender, EventArgs e)
+        {
+            labelError.Visible = false;
+            if(size==0) 
+            { 
+                labelError.Visible = true;
+                labelError.Text = "Ìàññèâ ïóñò";
+                return;
+            }
+            for (int i = 0; i < length; i++) 
+            {
+                if (arr[i] == Convert.ToInt32(numericUpDownChangePiorityOld.Value))
+                { 
+                    Add(arr, Delete(i), Convert.ToInt32(numericUpDownChangePiorityNew.Value));
+                    Clear_Tab();
+                    Print();
+                    return;
+                }
+            }
+            
+            labelError.Visible = true;
+            labelError.Text = "Ýëåìåíò íå íàéäåí";
+            return;
+        }
+
+        private void buttonPasteNew_Click(object sender, EventArgs e)
+        {
+            labelError.Visible = false;
+            if (size == length)
+            {
+                labelError.Visible = true;
+                labelError.Text = "Ìàññèâ ïîëîí";
+            }
+            for (int i = 0; i < length; i++)
+            {
+                if (arr[i] == 0)
+                {
+
+                    Add(arr,i,Convert.ToInt32( numericUpDownNewElement.Value));
+                    break;
+                }
+            }
+            Clear_Tab();
+            Print();
         }
     }
 }
