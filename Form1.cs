@@ -171,11 +171,13 @@ namespace labSIAOD18_20
             { 
                 labelError.Visible = true;
                 labelError.Text = "Массив пуст";
+                return;
             }
             if (sizeRezult == length)
             {
                 labelError.Visible = true;
                 labelError.Text = "Массив-результат полон";
+                return;
             }
             
             arrRezult[sizeRezult] = arr[0];
@@ -184,27 +186,56 @@ namespace labSIAOD18_20
             Clear_Tab() ;
             Print();
         }
+        //void AddDown(int[] array, int index, int num)
+        //{
+        //    if(size == length)
+        //    {
+        //        labelError.Visible = true;
+        //        labelError.Text = "Массив полон";
+        //        return;
+        //    }
+        //    arr[index] = num;
+        //    int i = index;
+        //    while (i * 2 + 2 < arr.Length)
+        //    {
+
+        //        if (arr[i * 2 + 1] > arr[i * 2 + 2])
+        //        {
+        //            arr[i] = arr[i * 2 + 1];
+        //            i = i * 2 + 1;
+        //        }
+        //        else
+        //        {
+        //            arr[i] = arr[i * 2 + 2];
+        //            i = i * 2 + 2;
+        //        }
+        //        arr[i] = 0;
+        //    }
+        //    arr[size] = num;
+        //    size++;
+        //}
         int Delete(int i)
         {
-            arr[i] = 0;
-
-            while (i * 2 + 2 < arr.Length)
+            arr[i] = arr[size-1];
+            arr[size - 1] = 0;
+            if (i * 2 + 2 < arr.Length)
             {
-
-                if (arr[i * 2 + 1] > arr[i * 2 + 2])
+                int tmp = arr[i];
+                while (i * 2 + 2 < arr.Length&&(tmp < arr[i * 2 + 1]|| tmp < arr[i * 2 + 2] ))
                 {
-                    arr[i] = arr[i * 2 + 1];
-                    i = i * 2 + 1;
+                    if(arr[i * 2 + 1] > arr[i * 2 + 2])
+                    {
+                        arr[i] = arr[i * 2 + 1];
+                        i = i * 2 + 1;
+                    }
+                    else
+                    {
+                        arr[i] = arr[i * 2 + 2];
+                        i = i * 2 + 2;
+                    }
                 }
-                else
-                {
-                    arr[i] = arr[i * 2 + 2];
-                    i = i * 2 + 2;
-                }
-                arr[i] = 0;
-
+                arr[i] = tmp;
             }
-
             size--;
             return i;
         }
@@ -220,8 +251,9 @@ namespace labSIAOD18_20
             for (int i = 0; i < length; i++) 
             {
                 if (arr[i] == Convert.ToInt32(numericUpDownChangePiorityOld.Value))
-                { 
-                    Add(arr, Delete(i), Convert.ToInt32(numericUpDownChangePiorityNew.Value));
+                {
+                    Delete(i);
+                    Add(arr,size , Convert.ToInt32(numericUpDownChangePiorityNew.Value));
                     Clear_Tab();
                     Print();
                     return;
@@ -240,6 +272,7 @@ namespace labSIAOD18_20
             {
                 labelError.Visible = true;
                 labelError.Text = "Массив полон";
+                return;
             }
             for (int i = 0; i < length; i++)
             {
