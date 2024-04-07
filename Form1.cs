@@ -1,3 +1,5 @@
+using System;
+
 namespace labSIAOD18_20
 {
     public partial class Form1 : Form
@@ -46,7 +48,7 @@ namespace labSIAOD18_20
             printTree();
             for (int i1 = 0; i1 < arr.Length; i1++)
             {
-                dataGridViewArray.Rows[0].Cells[i1].Value = arr[i1];
+                if (arr[i1]!=0) dataGridViewArray.Rows[0].Cells[i1].Value = arr[i1];
             }
             for (int i1 = 0; i1 < arrRezult.Length; i1++)
             {
@@ -94,22 +96,22 @@ namespace labSIAOD18_20
                 numOfIter++;
             }
         }
-        void Add(int[] array, int index, int num)
+        void Add(int index, int num)
         {
-            array[index] = num;
-            Up(array, index);
+            arr[index] = num;
+            Up( index);
             size++;
         }
 
-        void Up(int[] array, int indexOfElement)
+        void Up(int indexOfElement)
         {
             int i = indexOfElement;
 
-            while (array[i] > array[(i - 1) / 2])
+            while (arr[i] > arr[(i - 1) / 2])
             {
-                int tmp = array[(i - 1) / 2];
-                array[(i - 1) / 2] = array[i];
-                array[i] = tmp;
+                int tmp = arr[(i - 1) / 2];
+                arr[(i - 1) / 2] = arr[i];
+                arr[i] = tmp;
                 i = (i - 1) / 2;
             }
         }
@@ -153,7 +155,7 @@ namespace labSIAOD18_20
             Random rnd = new Random();
             for (int i = 0; i < arr.Length; i++)
             {
-                Add(arr, i, rnd.Next(10, 99));
+                Add(i, rnd.Next(10, 99));
             }
             Print();
         }
@@ -186,58 +188,26 @@ namespace labSIAOD18_20
             Clear_Tab() ;
             Print();
         }
-        //void AddDown(int[] array, int index, int num)
-        //{
-        //    if(size == length)
-        //    {
-        //        labelError.Visible = true;
-        //        labelError.Text = "Массив полон";
-        //        return;
-        //    }
-        //    arr[index] = num;
-        //    int i = index;
-        //    while (i * 2 + 2 < arr.Length)
-        //    {
 
-        //        if (arr[i * 2 + 1] > arr[i * 2 + 2])
-        //        {
-        //            arr[i] = arr[i * 2 + 1];
-        //            i = i * 2 + 1;
-        //        }
-        //        else
-        //        {
-        //            arr[i] = arr[i * 2 + 2];
-        //            i = i * 2 + 2;
-        //        }
-        //        arr[i] = 0;
-        //    }
-        //    arr[size] = num;
-        //    size++;
-        //}
         int Delete(int i)
         {
             arr[i] = arr[size-1];
             arr[size - 1] = 0;
-            if (i * 2 + 2 < arr.Length)
-            {
-                int tmp = arr[i];
-                while (i * 2 + 2 < arr.Length&&(tmp < arr[i * 2 + 1]|| tmp < arr[i * 2 + 2] ))
-                {
-                    if(arr[i * 2 + 1] > arr[i * 2 + 2])
-                    {
-                        arr[i] = arr[i * 2 + 1];
-                        i = i * 2 + 1;
-                    }
-                    else
-                    {
-                        arr[i] = arr[i * 2 + 2];
-                        i = i * 2 + 2;
-                    }
-                }
-                arr[i] = tmp;
-            }
+            Down(i);
             size--;
             return i;
+        }
+        private void Down(int index)
+        {
+            while (2 * index + 1 <= length)
+            {
+                
+                int j = 2 * index + 1;
+                if (j < arr.Length && arr[j] < arr[j + 1]) j++;
+                if ((arr[index] >= arr[j])) break;
+                    (arr[index], arr[j]) = (arr[j], arr[index]);
+                index = j;
+            }
         }
         private void buttonChangePriority_Click(object sender, EventArgs e)
         {
@@ -248,12 +218,18 @@ namespace labSIAOD18_20
                 labelError.Text = "Массив пуст";
                 return;
             }
+            int oldNum = Convert.ToInt32(numericUpDownChangePiorityOld.Value);
+            int newNum = Convert.ToInt32(numericUpDownChangePiorityNew.Value);
             for (int i = 0; i < length; i++) 
             {
-                if (arr[i] == Convert.ToInt32(numericUpDownChangePiorityOld.Value))
+                if (arr[i] ==oldNum)
                 {
-                    Delete(i);
-                    Add(arr,size , Convert.ToInt32(numericUpDownChangePiorityNew.Value));
+                    arr[i] = newNum;
+                    if (oldNum > newNum)
+                        Down(i);
+                    else 
+                        Up(i);
+
                     Clear_Tab();
                     Print();
                     return;
@@ -274,15 +250,7 @@ namespace labSIAOD18_20
                 labelError.Text = "Массив полон";
                 return;
             }
-            for (int i = 0; i < length; i++)
-            {
-                if (arr[i] == 0)
-                {
-
-                    Add(arr,i,Convert.ToInt32( numericUpDownNewElement.Value));
-                    break;
-                }
-            }
+            Add(size,Convert.ToInt32( numericUpDownNewElement.Value));
             Clear_Tab();
             Print();
         }

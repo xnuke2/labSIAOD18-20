@@ -60,10 +60,9 @@
             // 
             // buttonCreateQueue
             // 
-            buttonCreateQueue.Location = new Point(23, 10);
-            buttonCreateQueue.Margin = new Padding(3, 2, 3, 2);
+            buttonCreateQueue.Location = new Point(26, 13);
             buttonCreateQueue.Name = "buttonCreateQueue";
-            buttonCreateQueue.Size = new Size(168, 22);
+            buttonCreateQueue.Size = new Size(192, 29);
             buttonCreateQueue.TabIndex = 0;
             buttonCreateQueue.Text = "Создать очередь";
             buttonCreateQueue.UseVisualStyleBackColor = true;
@@ -71,10 +70,9 @@
             // 
             // buttonClearQueue
             // 
-            buttonClearQueue.Location = new Point(287, 10);
-            buttonClearQueue.Margin = new Padding(3, 2, 3, 2);
+            buttonClearQueue.Location = new Point(328, 13);
             buttonClearQueue.Name = "buttonClearQueue";
-            buttonClearQueue.Size = new Size(168, 22);
+            buttonClearQueue.Size = new Size(192, 29);
             buttonClearQueue.TabIndex = 1;
             buttonClearQueue.Text = "Очистить очередь";
             buttonClearQueue.UseVisualStyleBackColor = true;
@@ -82,10 +80,9 @@
             // 
             // buttoтExtractMax
             // 
-            buttoтExtractMax.Location = new Point(550, 10);
-            buttoтExtractMax.Margin = new Padding(3, 2, 3, 2);
+            buttoтExtractMax.Location = new Point(629, 13);
             buttoтExtractMax.Name = "buttoтExtractMax";
-            buttoтExtractMax.Size = new Size(168, 22);
+            buttoтExtractMax.Size = new Size(192, 29);
             buttoтExtractMax.TabIndex = 2;
             buttoтExtractMax.Text = "Извлечь наибольший";
             buttoтExtractMax.UseVisualStyleBackColor = true;
@@ -93,10 +90,9 @@
             // 
             // buttonPasteNew
             // 
-            buttonPasteNew.Location = new Point(23, 48);
-            buttonPasteNew.Margin = new Padding(3, 2, 3, 2);
+            buttonPasteNew.Location = new Point(26, 64);
             buttonPasteNew.Name = "buttonPasteNew";
-            buttonPasteNew.Size = new Size(168, 22);
+            buttonPasteNew.Size = new Size(192, 29);
             buttonPasteNew.TabIndex = 3;
             buttonPasteNew.Text = "Вставить новый";
             buttonPasteNew.UseVisualStyleBackColor = true;
@@ -104,10 +100,9 @@
             // 
             // buttonChangePriority
             // 
-            buttonChangePriority.Location = new Point(356, 50);
-            buttonChangePriority.Margin = new Padding(3, 2, 3, 2);
+            buttonChangePriority.Location = new Point(407, 67);
             buttonChangePriority.Name = "buttonChangePriority";
-            buttonChangePriority.Size = new Size(168, 22);
+            buttonChangePriority.Size = new Size(192, 29);
             buttonChangePriority.TabIndex = 4;
             buttonChangePriority.Text = "Изменить приоритет";
             buttonChangePriority.UseVisualStyleBackColor = true;
@@ -115,43 +110,42 @@
             // 
             // numericUpDownNewElement
             // 
-            numericUpDownNewElement.Location = new Point(196, 49);
-            numericUpDownNewElement.Margin = new Padding(3, 2, 3, 2);
+            numericUpDownNewElement.Location = new Point(224, 65);
             numericUpDownNewElement.Name = "numericUpDownNewElement";
-            numericUpDownNewElement.Size = new Size(66, 23);
+            numericUpDownNewElement.Size = new Size(75, 27);
             numericUpDownNewElement.TabIndex = 5;
             // 
             // numericUpDownChangePiorityOld
             // 
-            numericUpDownChangePiorityOld.Location = new Point(550, 50);
-            numericUpDownChangePiorityOld.Margin = new Padding(3, 2, 3, 2);
+            numericUpDownChangePiorityOld.Location = new Point(629, 67);
             numericUpDownChangePiorityOld.Name = "numericUpDownChangePiorityOld";
-            numericUpDownChangePiorityOld.Size = new Size(66, 23);
+            numericUpDownChangePiorityOld.Size = new Size(75, 27);
             numericUpDownChangePiorityOld.TabIndex = 6;
             // 
             // numericUpDownChangePiorityNew
             // 
-            numericUpDownChangePiorityNew.Location = new Point(648, 50);
-            numericUpDownChangePiorityNew.Margin = new Padding(3, 2, 3, 2);
+            numericUpDownChangePiorityNew.Location = new Point(741, 67);
+            numericUpDownChangePiorityNew.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDownChangePiorityNew.Name = "numericUpDownChangePiorityNew";
-            numericUpDownChangePiorityNew.Size = new Size(66, 23);
+            numericUpDownChangePiorityNew.Size = new Size(75, 27);
             numericUpDownChangePiorityNew.TabIndex = 7;
+            numericUpDownChangePiorityNew.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(530, 52);
+            label1.Location = new Point(606, 69);
             label1.Name = "label1";
-            label1.Size = new Size(13, 15);
+            label1.Size = new Size(16, 20);
             label1.TabIndex = 8;
             label1.Text = "c";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(620, 52);
+            label2.Location = new Point(709, 69);
             label2.Name = "label2";
-            label2.Size = new Size(20, 15);
+            label2.Size = new Size(26, 20);
             label2.TabIndex = 9;
             label2.Text = "на";
             // 
@@ -168,10 +162,9 @@
             panel1.Controls.Add(numericUpDownChangePiorityOld);
             panel1.Controls.Add(buttonChangePriority);
             panel1.Controls.Add(numericUpDownNewElement);
-            panel1.Location = new Point(10, 9);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(11, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(761, 86);
+            panel1.Size = new Size(870, 115);
             panel1.TabIndex = 10;
             // 
             // panel2
@@ -185,26 +178,26 @@
             panel2.Controls.Add(label4);
             panel2.Controls.Add(dataGridViewArray);
             panel2.Controls.Add(label3);
-            panel2.Location = new Point(10, 99);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(11, 132);
             panel2.Name = "panel2";
-            panel2.Size = new Size(761, 279);
+            panel2.Size = new Size(870, 372);
             panel2.TabIndex = 11;
             // 
             // labelError
             // 
             labelError.AutoSize = true;
-            labelError.Location = new Point(505, 61);
+            labelError.Location = new Point(577, 81);
             labelError.Name = "labelError";
-            labelError.Size = new Size(38, 15);
+            labelError.Size = new Size(50, 20);
             labelError.TabIndex = 10;
             labelError.Text = "label6";
             // 
             // buttonExit
             // 
-            buttonExit.Location = new Point(638, 238);
+            buttonExit.Location = new Point(729, 317);
+            buttonExit.Margin = new Padding(3, 4, 3, 4);
             buttonExit.Name = "buttonExit";
-            buttonExit.Size = new Size(119, 37);
+            buttonExit.Size = new Size(136, 49);
             buttonExit.TabIndex = 6;
             buttonExit.Text = "Выход";
             buttonExit.UseVisualStyleBackColor = true;
@@ -214,21 +207,20 @@
             // 
             dataGridViewRezult.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewRezult.ColumnHeadersVisible = false;
-            dataGridViewRezult.Location = new Point(4, 209);
-            dataGridViewRezult.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewRezult.Location = new Point(5, 279);
             dataGridViewRezult.Name = "dataGridViewRezult";
             dataGridViewRezult.RowHeadersVisible = false;
             dataGridViewRezult.RowHeadersWidth = 50;
-            dataGridViewRezult.Size = new Size(753, 24);
+            dataGridViewRezult.Size = new Size(861, 32);
             dataGridViewRezult.TabIndex = 5;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label5.Location = new Point(315, 192);
+            label5.Location = new Point(360, 256);
             label5.Name = "label5";
-            label5.Size = new Size(118, 15);
+            label5.Size = new Size(148, 20);
             label5.TabIndex = 4;
             label5.Text = "Результат выборки";
             // 
@@ -236,21 +228,20 @@
             // 
             dataGridViewTree.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewTree.ColumnHeadersVisible = false;
-            dataGridViewTree.Location = new Point(3, 87);
-            dataGridViewTree.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewTree.Location = new Point(3, 116);
             dataGridViewTree.Name = "dataGridViewTree";
             dataGridViewTree.RowHeadersVisible = false;
             dataGridViewTree.RowHeadersWidth = 50;
-            dataGridViewTree.Size = new Size(754, 103);
+            dataGridViewTree.Size = new Size(862, 137);
             dataGridViewTree.TabIndex = 3;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label4.Location = new Point(278, 61);
+            label4.Location = new Point(318, 81);
             label4.Name = "label4";
-            label4.Size = new Size(183, 15);
+            label4.Size = new Size(227, 20);
             label4.TabIndex = 2;
             label4.Text = "Представление в виде дерева";
             // 
@@ -258,12 +249,11 @@
             // 
             dataGridViewArray.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewArray.ColumnHeadersVisible = false;
-            dataGridViewArray.Location = new Point(3, 24);
-            dataGridViewArray.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewArray.Location = new Point(3, 32);
             dataGridViewArray.Name = "dataGridViewArray";
             dataGridViewArray.RowHeadersVisible = false;
             dataGridViewArray.RowHeadersWidth = 50;
-            dataGridViewArray.Size = new Size(754, 24);
+            dataGridViewArray.Size = new Size(862, 32);
             dataGridViewArray.TabIndex = 1;
             dataGridViewArray.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -271,20 +261,19 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(278, 7);
+            label3.Location = new Point(318, 9);
             label3.Name = "label3";
-            label3.Size = new Size(190, 15);
+            label3.Size = new Size(236, 20);
             label3.TabIndex = 0;
             label3.Text = "Представление в виде массива";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(775, 380);
+            ClientSize = new Size(886, 507);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Лабораторная работа 18-20 Хмыренков";
             Load += Form1_Load;
